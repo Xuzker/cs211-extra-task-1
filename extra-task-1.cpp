@@ -71,3 +71,17 @@ double time_from_utc(int utc_offset, double time)
 
     return fmod(local_time, 24.0);
 }
+
+int main() {
+    assert(fabs(seconds_difference(1800.0, 3600.0) - 1800.0) < DBL_EPSILON);
+    assert(fabs(hours_difference(1800.0, 3600.0) - 0.5) < DBL_EPSILON);
+    assert(fabs(to_float_hours(0, 15, 0) - 0.25) < DBL_EPSILON);
+    assert(fabs(to_24_hour_clock(24) - 0.0) < DBL_EPSILON);
+    assert(get_hours(3800) == 1);
+    assert(get_minutes(3800) == 3);
+    assert(get_seconds(3800) == 20);
+    assert(fabs(time_to_utc(+0, 12.0) - 12.0) < DBL_EPSILON);
+    assert(fabs(time_from_utc(+0, 12.0) - 12.0) < DBL_EPSILON);
+
+    return 0;
+}
